@@ -1,0 +1,100 @@
+2026-03-02 14:25:21,932 [INFO] root: =================================================================
+2026-03-02 14:25:21,934 [INFO] root:   Exoplanet Detection Pipeline  –  Revision 1: Logistic Regression
+2026-03-02 14:25:21,935 [INFO] root: =================================================================
+2026-03-02 14:25:21,936 [INFO] src.data_loader: Loading data from: C:\Users\DeLL\Desktop\Exo-Planet-Detection-Rev1-NoHydra\data\cumulative.csv
+2026-03-02 14:25:22,026 [INFO] src.data_loader: Loaded 9,564 rows × 50 columns.
+2026-03-02 14:25:22,026 [INFO] root: Raw data shape: (9564, 50)
+2026-03-02 14:25:22,026 [INFO] src.preprocessor: ─── Preprocessing start ───
+2026-03-02 14:25:22,042 [INFO] src.preprocessor: Target distribution:
+_target
+0    5023
+1    4541
+2026-03-02 14:25:22,044 [INFO] src.preprocessor: Dropped 7 configured columns.
+2026-03-02 14:25:22,048 [WARNING] src.preprocessor: Dropping 2 all-NaN columns: ['koi_teq_err1', 'koi_teq_err2']
+2026-03-02 14:25:22,053 [INFO] src.preprocessor: Features remaining: 40
+2026-03-02 14:25:22,055 [INFO] src.preprocessor: Missing values total: 12,303
+2026-03-02 14:25:22,108 [INFO] src.preprocessor: Imputer saved → C:\Users\DeLL\Desktop\Exo-Planet-Detection-Rev1-NoHydra\models\imputer.joblib
+2026-03-02 14:25:22,125 [INFO] src.preprocessor: Scaler saved              → C:\Users\DeLL\Desktop\Exo-Planet-Detection-Rev1-NoHydra\models\scaler.joblib
+2026-03-02 14:25:22,125 [INFO] src.preprocessor: Training columns saved    → C:\Users\DeLL\Desktop\Exo-Planet-Detection-Rev1-NoHydra\models\training_columns.joblib
+2026-03-02 14:25:22,126 [INFO] src.preprocessor: ─── Preprocessing complete  X=(9564, 40)  y=(9564,) ───
+2026-03-02 14:25:22,138 [INFO] src.preprocessor: Split → Train: (7651, 40)  Test: (1913, 40)  | Train pos rate: 0.475  Test pos rate: 0.475
+2026-03-02 14:25:22,139 [INFO] root: Train samples : 7,651  (pos=3,633  neg=4,018)
+2026-03-02 14:25:22,139 [INFO] root: Test  samples : 1,913  (pos=908  neg=1,005)
+2026-03-02 14:25:22,140 [INFO] src.model_trainer: Training LogisticRegression  |  n_samples=7,651  |  n_features=40
+2026-03-02 14:25:25,339 [INFO] src.model_trainer: Training complete.
+2026-03-02 14:25:25,342 [INFO] src.model_trainer: Model saved → C:\Users\DeLL\Desktop\Exo-Planet-Detection-Rev1-NoHydra\models\logisticregression_model.joblib
+2026-03-02 14:25:25,342 [INFO] src.model_trainer: ─── Evaluation start ───
+2026-03-02 14:25:25,361 [INFO] src.model_trainer: 
+                   precision    recall  f1-score   support
+
+Not Exoplanet (0)       0.98      0.98      0.98      1005
+    Exoplanet (1)       0.98      0.98      0.98       908
+
+         accuracy                           0.98      1913
+        macro avg       0.98      0.98      0.98      1913
+     weighted avg       0.98      0.98      0.98      1913
+
+2026-03-02 14:25:25,369 [INFO] src.model_trainer: ─── Performance summary ─────────────────────────────────────
+2026-03-02 14:25:25,370 [INFO] src.model_trainer:   accuracy            : 0.9807
+2026-03-02 14:25:25,370 [INFO] src.model_trainer:   sensitivity         : 0.9813
+2026-03-02 14:25:25,370 [INFO] src.model_trainer:   specificity         : 0.9801
+2026-03-02 14:25:25,371 [INFO] src.model_trainer:   precision           : 0.9780
+2026-03-02 14:25:25,371 [INFO] src.model_trainer:   f1_exoplanet        : 0.9797
+2026-03-02 14:25:25,371 [INFO] src.model_trainer:   roc_auc             : 0.9948
+2026-03-02 14:25:25,371 [INFO] src.model_trainer:   pr_auc              : 0.9940
+2026-03-02 14:25:25,372 [INFO] src.model_trainer: ─────────────────────────────────────────────────────────────
+2026-03-02 14:25:25,686 [INFO] src.model_trainer: Plot saved → C:\Users\DeLL\Desktop\Exo-Planet-Detection-Rev1-NoHydra\reports\confusion_matrix.png
+2026-03-02 14:25:25,881 [INFO] src.model_trainer: Plot saved → C:\Users\DeLL\Desktop\Exo-Planet-Detection-Rev1-NoHydra\reports\roc_curve.png
+2026-03-02 14:25:26,079 [INFO] src.model_trainer: Plot saved → C:\Users\DeLL\Desktop\Exo-Planet-Detection-Rev1-NoHydra\reports\pr_curve.png
+2026-03-02 14:25:26,257 [INFO] src.model_trainer: Plot saved → C:\Users\DeLL\Desktop\Exo-Planet-Detection-Rev1-NoHydra\reports\metrics_summary.png
+2026-03-02 14:25:26,264 [INFO] src.model_trainer: 
+Top 25 feature coefficients:
+         feature  coefficient
+   koi_fpflag_co    -3.172562
+   koi_fpflag_nt    -3.013955
+   koi_fpflag_ss    -2.545856
+   koi_fpflag_ec    -2.385600
+       koi_depth    -0.981252
+koi_tce_plnt_num     0.417411
+   koi_srad_err1    -0.407928
+  koi_steff_err1    -0.365576
+  koi_slogg_err2     0.363684
+  koi_slogg_err1     0.339611
+   koi_srad_err2     0.310646
+    koi_duration    -0.279240
+        koi_srad     0.244608
+      koi_kepmag     0.207226
+      koi_impact    -0.173486
+ koi_impact_err1    -0.162561
+ koi_impact_err2    -0.128171
+     koi_time0bk    -0.119234
+       koi_steff     0.111624
+  koi_steff_err2     0.110731
+              ra    -0.104315
+   koi_prad_err1     0.088784
+  koi_insol_err2    -0.086122
+  koi_insol_err1     0.078116
+         koi_teq    -0.078058
+2026-03-02 14:25:26,626 [INFO] src.model_trainer: Plot saved → C:\Users\DeLL\Desktop\Exo-Planet-Detection-Rev1-NoHydra\reports\feature_coefficients.png
+2026-03-02 14:25:26,627 [INFO] root: 
+2026-03-02 14:25:26,627 [INFO] root: ── Prediction Demo ──────────────────────────────────────────────
+2026-03-02 14:25:26,727 [INFO] src.predict: Prediction preprocessing complete - shape: (10, 40)
+2026-03-02 14:25:26,731 [INFO] root: ─────────────────────────────────────────────────────────────────
+2026-03-02 14:25:26,732 [INFO] root:   #  Actual            Predicted         Confidence  P(Exoplanet)
+2026-03-02 14:25:26,733 [INFO] root: ─────────────────────────────────────────────────────────────────
+2026-03-02 14:25:26,733 [INFO] root:   1  Not Exoplanet     Not Exoplanet         0.9999        0.0001
+2026-03-02 14:25:26,734 [INFO] root:   2  Exoplanet         Exoplanet             0.9815        0.9815
+2026-03-02 14:25:26,735 [INFO] root:   3  Exoplanet         Exoplanet             0.9846        0.9846
+2026-03-02 14:25:26,735 [INFO] root:   4  Exoplanet         Exoplanet             0.9828        0.9828
+2026-03-02 14:25:26,736 [INFO] root:   5  Not Exoplanet     Not Exoplanet         1.0000        0.0000
+2026-03-02 14:25:26,736 [INFO] root:   6  Not Exoplanet     Not Exoplanet         0.9915        0.0085
+2026-03-02 14:25:26,737 [INFO] root:   7  Not Exoplanet     Not Exoplanet         1.0000        0.0000
+2026-03-02 14:25:26,737 [INFO] root:   8  Not Exoplanet     Not Exoplanet         0.9895        0.0105
+2026-03-02 14:25:26,737 [INFO] root:   9  Not Exoplanet     Not Exoplanet         0.9735        0.0265
+2026-03-02 14:25:26,738 [INFO] root:  10  Not Exoplanet     Not Exoplanet         0.9283        0.0717
+2026-03-02 14:25:26,739 [INFO] root: ─────────────────────────────────────────────────────────────────
+2026-03-02 14:25:26,740 [INFO] root: 
+2026-03-02 14:25:26,741 [INFO] root: ✓  Pipeline finished successfully.
+2026-03-02 14:25:26,741 [INFO] root:    Plots  → C:\Users\DeLL\Desktop\Exo-Planet-Detection-Rev1-NoHydra\reports
+2026-03-02 14:25:26,742 [INFO] root:    Model  → C:\Users\DeLL\Desktop\Exo-Planet-Detection-Rev1-NoHydra\models\logisticregression_model.joblib
+2026-03-02 14:25:26,742 [INFO] root:    Log    → C:\Users\DeLL\Desktop\Exo-Planet-Detection-Rev1-NoHydra\logs\pipeline.log
